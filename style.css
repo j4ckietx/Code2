@@ -1,0 +1,15 @@
+body{
+  font-family: "Avenir", sans-serif;
+  padding-left: 10%;
+  padding-top: 5%;
+  position: fixed;
+  line-height: 40px;
+  width: 50%;
+  margin: auto;
+}
+li{
+  font-size: 18px;
+}
+footer{
+  text-align: left;
+}
