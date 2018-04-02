@@ -1,0 +1,33 @@
+{
+    "levels": [
+        {
+          "interval": 3,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "interval": 10,
+          "x": 5,
+          "y": 5
+        },
+        {
+          "interval": 25,
+          "x": 3,
+          "y": 0
+        },
+        {
+          "interval": 50,
+          "x": 9,
+          "y": 2
+        }
+    ],
+    "menuBackground": "#000000",
+    "menuFill": "#FFFFFF",
+    "menuText": "Press Space to Start",
+    "menuYouWinText": "Y O U   W I N",
+    "menuLevelUpText": "L E V E L   U P",
+    "menuTextX": 400,
+    "menuTextY": 200,
+    "menuLevelUpTextX": 400,
+    "menuLevelUpTextY": 400
+}
