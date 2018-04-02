@@ -11,12 +11,12 @@
           "y": 5
         },
         {
-          "interval": 25,
+          "interval": 35,
           "x": 3,
           "y": 0
         },
         {
-          "interval": 50,
+          "interval": 100,
           "x": 9,
           "y": 2
         }
