@@ -108,7 +108,7 @@ function keyReleased() {
         right_key = RIGHT_ARROW;
         down_key = DOWN_ARROW;
         up_key = UP_ARROW;
-    } else {
+    } else if (currentState == state.Level && currentLevel == 2) {
         left_key = 65; //a
         right_key = 68; //d
         down_key = 83; //s
