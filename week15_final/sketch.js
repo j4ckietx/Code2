@@ -1,6 +1,7 @@
 var game;
 var config;
 var gifs = [];
+var currentLevel = 0;
 
 function Square(value, x, y) {
   this.x = x;
@@ -84,13 +85,16 @@ function Chain() {
   }
 }
 
-function Game() {
-  this.width = 10;
-  this.height = 10;
-  this.scale = 64;
-  this.variation = 10;
+function Game(level) {
+  this.width = level.size;
+  this.height = level.size;
+  this.scale = level.scale;
+  this.variation = level.variation; // how many different images to show
+  this.difficulty = level.difficulty;
   this.rows = [];
   this.chain = new Chain();
+  this.wins = 0;
+  this.menu = false;
 
   this.init = function(width, height) {
     for (var y=0; y<this.height; y++) {
@@ -102,6 +106,15 @@ function Game() {
       }
       this.rows.push(row);
     }
+  }
+
+  this.drawMenu = function() {
+    fill(0);
+    rect(0,0,800,800);
+    fill(255);
+    textAlign(CENTER);
+    textSize(36);
+    text("Press Spacebar to continue", 400, 400);
   }
 
   this.handleMousePressed = function() {
@@ -128,6 +141,15 @@ function Game() {
           this.chain.forEach(function (square, idx) {
             square.empty = true;
           })
+          this.wins += 1
+          if (this.wins >= this.difficulty) {
+            if (config.levels.length-1 > currentLevel) {
+              currentLevel += 1;
+              game = new Game(config.levels[currentLevel]);
+              loadGiphyData(config.levels[currentLevel].searchTerm);
+            }
+          }
+
         } else {
           this.chain.forEach(function (square) {
             square.highlight = false;
@@ -140,6 +162,12 @@ function Game() {
   }
 
   this.draw = function() {
+
+    if (this.menu) {
+      this.drawMenu();
+      return;
+    }
+
     noStroke();
     for (var y=0; y<this.rows.length; y++) {
       var row = this.rows[y];
@@ -163,11 +191,11 @@ function preload() {
 
 function myInputEvent(e) {
   config.searchTerm = e.target.value;
-  loadGiphyData();
+  loadGiphyData(e.target.value);
 }
 
-function loadGiphyData() {
-  var url = "https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=" + config.searchTerm;
+function loadGiphyData(searchTerm) {
+  var url = "https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=" + searchTerm;
   loadJSON(url, function(response) {
     for (var i=0; i<response.data.length; i++) {
       var gif = response.data[i];
@@ -181,12 +209,13 @@ function loadGiphyData() {
 }
 
 function setup() {
-  game = new Game();
+  game = new Game(config.levels[currentLevel]);
+  game.menu = true;
   createCanvas(800, 800);
   var inp = createInput('');
   inp.input(myInputEvent);
   inp.size(100,100);
-  loadGiphyData()
+  loadGiphyData(config.levels[currentLevel].searchTerm);
 }
 
 function draw() {
@@ -194,5 +223,13 @@ function draw() {
 }
 
 function mousePressed() {
-  game.handleMousePressed();
+  if (game.menu == false) {
+    game.handleMousePressed();
+  }
+}
+
+function keyReleased() {
+  if (keyCode == 32) {
+    game.menu = false;
+  }
 }
