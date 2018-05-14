@@ -167,7 +167,7 @@ function myInputEvent(e) {
 }
 
 function loadGiphyData() {
-  var url = "http://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=" + config.searchTerm;
+  var url = "https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=" + config.searchTerm;
   loadJSON(url, function(response) {
     for (var i=0; i<response.data.length; i++) {
       var gif = response.data[i];
