@@ -1,24 +1,8 @@
-// code 2
-// section a
-// bfa dt
-// spring 2018
-// bryan ma
-
-// week 5
-// choose your own adventure data
-
-// scene data model: 
-
-// {
-//   sceneText: '', //the scene text
-//   options: [], // the text options to choose
-//   nextScenes: []  // the target scene based on the previous options
-// }
-
 var sceneData;
 
 var currentScene = 0;
 var scenes = [];
+var images = [];
 
 function preload() {
   sceneData = loadJSON('scenes.json');
@@ -27,31 +11,50 @@ function preload() {
 function setup() {
   createCanvas(800, 800);
   CreateScenesFromData(sceneData.scenes);
+
+  for (var i=0; i<sceneData.scenes.length; i++) {
+    (function(j) {
+      loadImage(sceneData.scenes[j].image, function(img) {
+        images[j] = img;
+      });
+    }) (i);
+  }
 }
 
 function draw() {
-  background(231, 190, 150);
-  scenes[currentScene].display();
+  var scene = scenes[currentScene];
+  background(0);
+
+  if (images[currentScene]) {
+    image(images[currentScene], 0, 0, width, height);
+  }
 
   fill(0);
+  noStroke();
+  rect(0,0,width,400);
+
+  scenes[currentScene].display();
+
+  fill(255);
   textSize(24);
   text("press the option number to advance to the indicated scene", 50, 700);
 }
 
 function CreateScenesFromData(data) {
   for (var i = 0; i < data.length; i++) {
-    scenes.push(new Scene(data[i].sceneText, data[i].options, data[i].nextScenes))
+    scenes.push(new Scene(data[i].sceneText, data[i].options, data[i].nextScenes, data[i].loadedImage))
   }
 }
 
-function Scene(sceneText, options, nextScenes) {
+function Scene(sceneText, options, nextScenes, image) {
   this.sceneText = sceneText;
   this.options = options;
   this.nextScenes = nextScenes;
+  this.image = image;
 
   this.display = function() {
-    fill(0);
-    textSize(32);
+    fill(255);
+    textSize(28);
     text(this.sceneText, 100, 100);
 
     for (var i = 0; i < options.length; i++) {

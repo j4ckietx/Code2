@@ -1,29 +1,34 @@
 {
   "scenes": [
     {
-      "sceneText": "This is scene 0",
-      "options": ["go to scene 1"],
-      "nextScenes": [1]
+      "sceneText": "You are about to leave home",
+      "options": ["Go to the forest", "Go to the river", "Go to the city" ],
+      "nextScenes": [1, 2, 3],
+      "image": ""
     },
     {
-      "sceneText": "This is scene 1",
-      "options": ["go to scene 2", "go to scene 3"],
-      "nextScenes": [2, 3]
+      "sceneText": "You arrive at the forest",
+      "options": ["Go to the river", "Go to the city"],
+      "nextScenes": [2, 3],
+      "image": "./img/1.jpg"
     },
     {
-      "sceneText": "This is scene 2",
-      "options": ["go to scene 3", "go to scene 4"], 
-      "nextScenes": [3, 4] 
+      "sceneText": "You arrive at the river",
+      "options": ["Go to the forest", "Go to the city"],
+      "nextScenes": [1, 3],
+      "image": "./img/2.jpg"
     },
     {
-      "sceneText": "This is scene 3",
-      "options": ["go to scene 4", "go to scene 0"],
-      "nextScenes": [4, 0]
+      "sceneText": "You arrive at the city",
+      "options": ["Go to the forest", "Go to the river", "Go to Grandma's house"],
+      "nextScenes": [1, 2, 4],
+      "image": "./img/3.jpg"
     },
     {
-      "sceneText": "This is scene 4",
-      "options": ["go to scene 0", "go to scene 1", "go to scene 2", "go to scene 3"],
-      "nextScenes": [0, 1, 2, 3]
+      "sceneText": "You successfully came to the grandma's house",
+      "options": ["Go home"],
+      "nextScenes": [0],
+      "image": "./img/4.jpg"
     }
   ]
 }

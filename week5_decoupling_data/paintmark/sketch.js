@@ -1,13 +1,3 @@
-// code 2
-// section a
-// bfa dt
-// spring 2018
-// bryan ma
-
-// week 5
-// saving/loading paint data
-// based on example by Jon Beilin
-
 var paintmarks = [];
 var paintDataFile = 'paintData.json';
 var r = 255;
