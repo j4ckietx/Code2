@@ -16,7 +16,7 @@ function Level(x, y, interval) {
 
 function preload() {
     data = loadJSON("data.json");
-    gameFont = loadFont('assets/Raleway-Bold.ttf');
+    gameFont = loadFont('./assets/Raleway-Bold.ttf');
 }
 
 function setup() {
