@@ -1,7 +1,7 @@
 var gif;
 
 function myInputEvent(e) {
-  var xhr=$.get("http://api.giphy.com/v1/gifs/translate?s=" + e.target.value + "&api_key=YGXVXgGJJw8y06vezB34ihBQJGtzzG7A&limit=1");
+  var xhr=$.get("https://api.giphy.com/v1/gifs/translate?s=" + e.target.value + "&api_key=YGXVXgGJJw8y06vezB34ihBQJGtzzG7A&limit=1");
   xhr.done(function(response) {
     gif.elt.src = response.data.images.fixed_height.url;
   });
